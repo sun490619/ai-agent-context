@@ -20,17 +20,20 @@ jobs:
     timeout-minutes: 5
 
     steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          path: .
+
       - name: 🐍 设置 Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: 🔍 运行三站排查
-        working-directory: ${{ github.workspace }}
         run: python3 site_check.py
 
       - name: 💾 提交排查结果
-        working-directory: ${{ github.workspace }}
         if: always()
         run: |
           git config user.name "CodeBuddy Bot 🔍"
