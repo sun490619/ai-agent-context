@@ -1,0 +1,55 @@
+name: 🔍 三站每日排查 — aitool-picks + MintShovels + makerearn
+
+on:
+  schedule:
+    # 北京时间每天 09:00 = UTC 01:00
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: site-health-check
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    name: 🌐 三站健康检查
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 🐍 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🔍 运行三站排查
+        run: python3 site_check.py
+
+      - name: 💾 提交排查结果
+        if: always()
+        run: |
+          git config user.name "CodeBuddy Bot 🔍"
+          git config user.email "bot@codebuddy.dev"
+          
+          if ! git diff --quiet COLLAB.md; then
+            git add COLLAB.md
+            git commit -m "🔍 每日排查 $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
+            git push origin main
+            echo "✅ 排查结果已推送"
+          else
+            echo "ℹ️  无变更"
+          fi
+
+      - name: 📊 生成摘要
+        if: always()
+        run: |
+          echo "## 🔍 三站排查完成" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| 项目 | 状态 |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| ⏰ 时间 | $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M') 北京时间 |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔄 触发 | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 📄 结果 | [COLLAB.md](https://github.com/sun490619/ai-agent-context/blob/main/COLLAB.md) |" >> $GITHUB_STEP_SUMMARY
