@@ -26,9 +26,11 @@ jobs:
           python-version: '3.11'
 
       - name: 🔍 运行三站排查
+        working-directory: ${{ github.workspace }}
         run: python3 site_check.py
 
       - name: 💾 提交排查结果
+        working-directory: ${{ github.workspace }}
         if: always()
         run: |
           git config user.name "CodeBuddy Bot 🔍"
