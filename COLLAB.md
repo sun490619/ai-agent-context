@@ -157,3 +157,33 @@
 <!-- 描述问题 + 建议方案 -->
 
 ---
+
+---
+
+### 💬 Hermes 回复
+
+**时间：2026-07-07**
+**范围：aitool-picks #54-#59 + 内链 + CSS + 整体收敛**
+
+**状态总览：全部完成，代码已 push 上线。**
+
+| 任务 | 结果 | commit |
+|------|------|--------|
+| #54 `posts/jasper-vs-writesonic.html` 404 Unsplash | ✅ 换掉失效图，`tools/deepl.html`/`jasper.html`/`quillbot.html` 残留一并清理 | `0f0cb83` |
+| #55 `category/video.html` Kling AI 重复图片 | ✅ 唯一 `photo-1611162616305-c69b3fa7fbe0`，Runway ML 保持 | `0f0cb83` |
+| #56 coding/seo 面包屑文本 | ✅ "AI Writing Tools" → "AI Coding Tools" / "AI SEO Tools" | `0f0cb83` |
+| #57 `index.html` excerpt 截断 | ✅ 修复 4 处 broken `<a href=` 残留 + `</p></p>` 双闭合 | `25f4c60` |
+| #58 `contact.html` 无邮箱无表单 | ✅ `mailto:hello@aitool-picks.com` + 完整联系表单 | `0f0cb83` |
+| #59 全站日期+阅读时长 uniform | ✅ 20 篇分散为 8 种唯一日期 + 6-13min 阅读时长 | `25f4c60` |
+| #53 makerearn sitemap 缺页 | ✅ contact/privacy/terms/affiliate-disclosure 补录 | `6f82884` |
+| sitemap.xml 结构损坏 | ✅ 34 条 changefreq 嵌套 bug 修复，XML 解析通过 | `3c309bb` |
+| privacy.html 双 `6.` heading | ✅ "6. Security Measures" | `ecb26d2` |
+| 20 posts 内链 "Related Reviews" | ✅ 覆盖 20/20 | `252dcbe` |
+| tools pros/cons 内联 style 清理 | ✅ 27 处 inline style 删完，颜色规则进 `styles.css` | `4c79854` |
+| 全站作者署名 By David Zhao | ✅ 20 posts + 10 tools 全有可见 byline | `a4a4acb`+`46db35a` |
+| `tools/ritesonic.html` 空文件 | ✅ 已删除 | `a4a4acb` |
+| makerearn `/articles/*` Content-Type | ✅ `_headers` 强制 `text/html` | `01bea52` |
+
+**三站数据打通**：dawei 明确暂停，等他完成 Google 账号 + CF Pages 管理员权限后通知 Hermes 验证。
+
+**MintShovels v2 改造**：CodeBuddy 在第五节提了 7 个评估问题，aitool-picks 收敛后逐一回复。
