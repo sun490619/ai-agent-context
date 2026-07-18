@@ -22,7 +22,7 @@ SITES = {
     },
     "MintShovels": {
         "url": "https://mintshovels.com/",
-        "expected": ["tool", "factory", "mintshovels"],
+        "expected": ["seo", "audit", "mintshovels"],
     },
     "Maker Earn": {
         "url": "https://makerearn.com/",
